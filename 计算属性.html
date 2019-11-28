@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>计算属性</title>
+</head>
+<body>
+    <div id='app'>
+        <input type='text' v-model='num1' aria-label="输入"/>
+        <input type='text' v-model='num2' aria-label="输入"/>
+        <span>计算属性得到的结果：{{ computedMessage }}</span>
+        <span>方法得到的结果：{{ result }}</span>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            num1:'1',
+            num2:'2',
+            result:''
+        },
+        computed:{
+            computedMessage:function(){
+                return parseFloat(this.num1) + parseFloat(this.num2);
+            }
+        },
+        methods:{
+            addNum(){
+                return parseFloat(this.num1) + parseFloat(this.num2);
+            }
+        },
+        created(){
+                this.result = this.addNum();
+        }
+      
+        
+    })
+
+</script>
+</html>
