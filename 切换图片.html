@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>vueTest</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+    <div id='app'>
+      <input id='prev' type="button" value="上一张" @click="prev" v-show='index>0'></input>
+      <img v-bind:src="images[index]"></img>
+      <input id='next' type="button" value="下一张" @click="next" v-show='index!=images.length-1'></input>
+    </div>
+
+</body>
+<script>
+
+var app = new Vue({
+    el:'#app',
+    data:{
+        message:"图片切换",
+        images:[
+            "./images/1.jpg",
+            "./images/2.jpg",
+            "./images/3.jpg",
+            "./images/4.jpg",
+            "./images/5.jpg",
+            "./images/6.jpg",
+        ],
+        index:0
+    },
+    methods:{
+        prev() {
+            if (this.index >= 0) {
+                this.index--;
+            }
+           
+        },
+        next() {
+            if(this.index < this.images.length-1){
+                this.index++;
+            }
+            
+        }
+    }
+})
+</script>
+</html>

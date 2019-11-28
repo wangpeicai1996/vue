@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>判断与循环</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+    <div id='app' >
+       <span v-if="test">{{ message}}</span> 
+    </div>
+    <div id='app2'>    
+           <span v-for='x in list'>
+                {{ x.text }}
+                <br/>
+           </span>  
+    </div>
+</body>
+<script>
+var app = new Vue({
+    el:'#app',
+    data:{
+        test:true,
+        message:"判断为真就看见了"
+    }      
+})
+
+var app2 = new Vue({
+    el:'#app2',
+    data:{
+        list:[
+            {text:'java'},
+            {text:'mysql'},
+            {text:'eclipse'}
+        ]
+    }
+})
+
+</script>
+</html>
