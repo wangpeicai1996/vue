@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>侦听属性</title>
+</head>
+<body>
+    <div id='app'>
+        <input type='text' v-model='question'/>
+        <span>{{ answer }}</span>
+    </div>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            question:'',
+            answer:"你还没有问问题！"
+        },
+        watch:{
+            question:function(){
+                this.answer='你的问题太深奥了!'
+            }
+        }
+    })
+</script>
+    
+</body>
+</html>
