@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>绑定样式</title>
+</head>
+<body>
+    <div id='app' v-bind:style="{ color: col,fontSize:size+'px'}">
+            绑定样式
+        </div>
+        <div id='app1' v-bind:style="myStyle">
+            绑定样式
+        </div>
+        <div id='app2' v-bind:style="[myColor,mySize]">
+                绑定样式
+            </div>
+    <script>
+        var vm1 = new Vue({
+            el:'#app',
+            data:{
+                col:'red',
+                size:30
+            }
+        })
+        var vm2 = new Vue({
+            el:'#app1',
+            data:{
+                myStyle:{
+                    color:'blue',
+                    fontSize:'60px'
+                }
+            }
+        })
+        var vm3 = new Vue({
+            el:'#app2',
+            data:{
+                myColor:{
+                    color:'yellow'
+                },
+                mySize:{
+                    fontSize:'90px'
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

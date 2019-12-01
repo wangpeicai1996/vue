@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>条件渲染v-if</title>
+</head>
+<body>
+    <div id='app'>
+        <h2>{{ message }}</h2>
+        <template v-if='bigger'>
+            <h1>{{ message }}</h1>
+        </template>
+       
+    </div>
+    
+
+    <script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message : '文字',
+            bigger:'false'
+        },
+        methods:{
+            change(){
+                this.bigger='true'
+            }
+        }
+    })
+    </script>
+</body>
+</html>
