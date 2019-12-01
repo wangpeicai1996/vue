@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>判断与循环</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+
+    <div id='app2'>    
+           <span v-for='x in list'>
+                {{ x.text }}
+                <br/>
+           </span>
+           <!-- 获取索引值index -->
+           <span v-for='(x,index) in list'>
+           {{index}} = {{ x.text }}
+            <br/>
+       </span>
+           <!-- 循环对象属性 -->
+           <ul>
+               <li v-for="item in user">
+                   {{ item }}
+               </li>
+           </ul>  
+            <!-- 可以获取key名,第三个参数为索引值index -->
+           <ul>
+            <li v-for="(item,key,index) in user" :key='item.key'>
+              {{index}} = {{key}} : {{ item }}
+            </li>
+        </ul> 
+    </div>
+</body>
+<script>
+
+
+var app2 = new Vue({
+    el:'#app2',
+    data:{
+        list:[
+            {text:'java'},
+            {text:'mysql'},
+            {text:'eclipse'}
+        ],
+        user:{
+            username:'张三',
+            age:18,
+            性别:'男'
+        }
+    }
+})
+
+</script>
+</html>

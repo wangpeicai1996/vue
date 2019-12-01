@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>改变已有实例的对象属性</title>
+</head>
+<body>
+    <div id='app'>
+        <ul>
+            <li> 
+                {{users.username}}:{{users.age}}:{{users.sex}}
+            </li>
+        </ul>
+        <input type='button' value='新增对象单个属性' @click='addAge'/>
+        <input type='text' v-model='users.age' placeholder="响应式渲染改变年龄"/>
+        <input type='button' value='新增对象多个属性' @click='addMulti'/>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                users:{
+                    username:'张三'
+                }
+                   
+            },
+            methods:{
+                addAge(){
+                    vm.$set(this.users,'age',18)
+                },
+                addMulti(){
+                    vm.users = Object.assign({},vm.users,{
+                        age:18,
+                        sex:'男'
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

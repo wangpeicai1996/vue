@@ -10,23 +10,67 @@
 <body>
     <div id='app'>
         <h2>{{ message }}</h2>
-        <template v-if='bigger'>
+        <template v-if="bigger">
             <h1>{{ message }}</h1>
         </template>
-       
+       <input type='button' value='切换' @click='change'/>
+
+       <div v-if='show'>
+           你看见的是v-if
+       </div>
+       <div>
+           你看见v-else了
+       </div>
+
+       <input type='text' v-model='give' placeholder="请输入选择"/><br/>
+       <span v-if="give === '1'">这是选择1</span>
+       <span v-else-if="give === '2'">这是选择2</span>
+       <span v-if="give ==='3'">这是选择3</span>
+
     </div>
     
+    <!-- key关键字是保证输入对象唯一，切换输入框之后内容会清空，不加key关键字表示唯一的话，切换输入框时，之前输入的内容会保留 -->
+    <div id='app2'>
+        <template v-if="loginType === 'username'">
+            <label>username</label>
+            <input placeholder="请输入用户名" key='username'/>
+        </template>
+        <template v-else>
+            <label>email</label>
+            <input placeholder="请输入邮箱" key='email'/>
+        </template>
+        <input type='button' value='切换登录方式' @click='toggleType'/>
+    </div>
 
     <script>
     var vm = new Vue({
         el:'#app',
         data:{
             message : '文字',
-            bigger:'false'
+            bigger: false,
+            show:false,
+            give:''
         },
         methods:{
             change(){
-                this.bigger='true'
+                if (this.bigger) {
+                    this.bigger = false
+                }else{
+                    this.bigger = true
+                }
+                
+            }
+        }
+    })
+
+    var vm2 = new Vue({
+        el:'#app2',
+        data:{
+            loginType:'username'
+        },
+        methods:{
+            toggleType(){
+                this.loginType=''
             }
         }
     })

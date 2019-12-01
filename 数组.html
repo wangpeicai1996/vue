@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>数组</title>
+</head>
+<body>
+    <!--数组的变异方法，即调用之后会改变原数组的值
+    1.push()
+    2.pop()
+    3.shift()
+    4.unshift()
+    5.splice()
+    6.sort()
+    7.reverse()
+    -->
+
+    <!--数组实现响应式的渲染,vm.items[index]=newValue是不会立即响应式渲染改变的
+    可以使用vm.$set(vm.items,index,newvalue)实现响应式渲染-->
+<!-- 直接使用arr.length=2也是不行的，可以使用vm.arr.splice(2)实现 -->
+    <div id='app'>
+        <ul>
+            <li v-for='item in arr'>
+                {{ item }}
+            </li>
+        </ul>
+        <input type='button' value='直接设置数组值' @click='directNewValue'/>
+        <input type='button' value='set方法设置数组值' @click='setNewValue'/>
+        <input type='button' value='改变数组长度' @click='changeLength'/>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                arr:['语文','数学','英语']
+            },
+            methods:{
+                directNewValue(){
+                    this.arr[1]='物理'
+                },
+                setNewValue(){
+                    vm.$set(this.arr,[1],'物理')
+                },
+                changeLength(){
+                    vm.arr.splice(2)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
