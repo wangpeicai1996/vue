@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 </title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type='button' value='get请求' @click='get'/><br/>
+    <input type='button' value='post请求' @click='post'/>
+</div>
+
+<script>
+var vm = new Vue({
+  el: '#app',
+  methods:{
+      get:function(){
+          axios.get("https://www.tianqiapi.com/api/?version=v1&cityid=101110101&appid=23343529&appsecret=Ppzv3NCq").then(function(response){
+            alert(response);
+            console.log(response);
+          },function(err){
+
+          })
+      },
+      post:function(){
+            axios.post("http://ip.taobao.com/service/getIpInfo.php",
+                {
+                    ip:"63.223.108.42"
+                }
+            ).then(function(response){
+                console.log(response);
+            })
+      }
+  }
+})
+
+</script>
+</body>
+</html>

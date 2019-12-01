@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 组件</title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+ <ol>
+     <test-item v-for='i in testText' v-bind:test='i'></test-item>
+ </ol>  
+</div>
+
+<script>
+    Vue.component('test-item',{
+        props:['test'],
+        template:'<li>{{ test.text}}</li>'
+    })
+    var vm = new Vue({
+    el: '#app',
+    data: {
+        testText:[
+            {text:'java'},
+            {text:'mysql'},
+            {text:'eclipse'}
+        ]
+    }
+    })
+
+</script>
+</body>
+</html>

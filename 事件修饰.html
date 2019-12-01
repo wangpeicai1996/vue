@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 组件</title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app" v-html='html'>
+    {{html}}
+</div>
+
+<div id='app2' >
+    {{"结果是：" + message}}<br/>
+    <input id='button1' type='button' value='获取结果' @click="test(1,2)"/>
+    <input id='button2' type='button' value='事件修饰符' @keyup.enter='sayHi()'/>
+</div>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            html:'<span>这是html插值</span>'
+        }
+    })
+
+    var vm2 = new Vue({
+        el:'#app2',
+        data:{
+            message:''
+        },
+        methods:{
+            test:function(arg1,arg2){
+                this.message = arg1 + arg2;
+            },
+            sayHi:function(){
+                alert("事件修饰符");
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
