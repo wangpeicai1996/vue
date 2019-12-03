@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>表单绑定输入</title>
+</head>
+<body>
+    <div id='app'>
+        <input type='text' v-model='message'/>
+        <span>输入的值： {{message}}</span>
+    </div>
+    <br/>
+    <div id='app2'>
+        <textarea v-model='message'>这是多行文本域的输入框</textarea>
+        <span>{{message}}</span>
+    </div>
+
+    <div id='app3'>
+        <input type='checkbox' id='aa' v-model='checked'>
+        <label for='aa'>{{checked}}</label>
+    </div>
+    <div id='app4'>
+        <input type='checkbox' id='java' value='java'  v-model='arr'/>java</input>
+        <input type='checkbox' id='mysql' value='mysql'  v-model='arr'/>
+        <label for='mysql'>mysql</label>
+        <input type='checkbox' id='python' value='python'  v-model='arr'/>
+        <label for='python'>python</label>
+        <br/>
+        <ul>
+            <li v-for='item in arr'>
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message:''
+            }
+        })
+        var vm1 = new Vue({
+            el:'#app2',
+            data:{
+                message:''
+            }
+        })
+        var vm3 = new Vue({
+            el:'#app3',
+            data:{
+                checked:false
+            }
+        })
+        var vm4 = new Vue({
+            el:'#app4',
+            data:{
+                arr:[]
+            }
+        })
+        
+    </script>
+</body>
+</html>

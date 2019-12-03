@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <title>按键修饰符</title>
+</head>
+<body>
+    <div id='app'>
+        <input type='button' value='按enter' @keyup.enter='enter'/>
+        <input type='button' value='按page-down' @keyup.page-down='pageDown'/>
+        <input type='button' value='按tab' @keyup.tab='tab'/>
+        <input type='button' value='按delete' @keyup.delete='del'/>
+        <input type='button' value='按esc' @keyup.esc='esc'/>
+        <input type='button' value='系统修饰键' @click.ctrl='ctrl'/>
+        <input type='button' value='只按下ctrl系统修饰键' @keyup.17='onlyCtrl'/>
+        <button value='exact' @click.exact='exact'>exact</button>
+        <button @keyup.alt.67='altc'>alt+c</button>
+
+    </div>
+    <script>
+    var vm = new Vue({
+        el:'#app',
+        methods:{
+            enter(){
+                alert('enter')
+            },
+            pageDown(){
+                alert('pageDown')
+            },
+            tab(){
+                alert('tab')
+            },
+            del(){
+                alert('delete')
+            },
+            esc(){
+                alert('esc')
+            },
+            ctrl(){
+                alert('ctrl')
+            },
+            onlyCtrl(){
+                alert('onlyCtrl')
+            },
+            exact(){
+                alert('exact')
+            },
+            altc(){
+                alert('alt+c')
+            }
+        }
+    })
+    </script>
+</body>
+</html>
