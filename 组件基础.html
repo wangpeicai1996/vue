@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Vue 组件</title>
+<title>组件基础</title>
 <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
 </head>
 <body>
@@ -14,8 +14,15 @@
 
 <script>
     Vue.component('test-item',{
+        data(){
+            //data必须是一个函数,保证每一个组件对象数据的唯一性
+            return {
+                    count:0
+            }  
+        },
+        //通过props属性向组件传递数据，可以使用v-bind来绑定数据渲染
         props:['test'],
-        template:'<li>{{ test.text}}</li>'
+        template:'<li @click="count++">{{ test.text }}   点击次数 {{count}}</li>'
     })
     var vm = new Vue({
     el: '#app',

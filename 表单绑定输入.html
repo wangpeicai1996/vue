@@ -35,6 +35,24 @@
             </li>
         </ul>
     </div>
+    <div id='app5'>
+        <select  v-model='selected'>
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>选择的选项：{{ selected }}</span>
+    </div>
+
+    <div id='app6'>
+        <select  v-model='selected'>
+            <option v-for='option in options' :value='option.value'>
+            {{option.text}}
+        </option>
+        </select>
+        <span>选择的选项：{{ selected }}</span>
+    </div>
     <script>
         var vm = new Vue({
             el:'#app',
@@ -58,6 +76,23 @@
             el:'#app4',
             data:{
                 arr:[]
+            }
+        })
+        var vm5 = new Vue({
+            el:'#app5',
+            data:{
+                selected:''
+            }
+        })
+        var vm6 = new Vue({
+            el:'#app6',
+            data:{
+                selected:'',
+                options:[
+                    {text:'A',value:'1'},
+                    {text:'B',value:'2'},
+                    {text:'C',value:'3'},
+                ]
             }
         })
         
