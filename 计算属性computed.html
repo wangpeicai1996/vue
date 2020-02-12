@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,51 +8,79 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>计算属性</title>
 </head>
+
 <body>
     <div id='app'>
-        <input type='text' v-model='num1' aria-label="输入"/>
-        <input type='text' v-model='num2' aria-label="输入"/>
+        <input type='text' v-model='num1' aria-label="输入" />
+        <input type='text' v-model='num2' aria-label="输入" />
         <span>计算属性得到的结果：{{ computedMessage }}</span>
-        <span>方法得到的结果：{{ result }}</span>
+        <span>方法得到的结果：{{ addNum() }}</span>
         <h2>总价格：{{totalPrice}}</h2>
     </div>
-</body> 
+    <div id='app2'>
+        <h2>{{fullName}}</h2>
+    </div>
+</body>
 <script>
     var vm = new Vue({
-        el:'#app',
-        data:{
-            num1:'1',
-            num2:'2',
-            result:'',
-            books:[
-                {id: 01,name: "java编程",price: 110},
-                {id: 02,name: "mysql语句",price: 98},
-                {id: 03,name: "spring框架",price: 115}
+        el: '#app',
+        data: {
+            num1: '1',
+            num2: '2',
+            result: '',
+            books: [
+                { id: 01, name: "java编程", price: 110 },
+                { id: 02, name: "mysql语句", price: 98 },
+                { id: 03, name: "spring框架", price: 115 }
             ]
         },
-        computed:{
-            computedMessage:function(){
+        //computed和methods区别在于，computed有数据缓存，如果渲染的数据没发生变化，计算属性只会执行一次，
+        //后续的展示只是获取缓存中的值，而methods方法没有缓存，调用多少次就执行多少次逻辑，效率较低
+        computed: {
+            computedMessage: function () {
                 return parseFloat(this.num1) + parseFloat(this.num2);
             },
-            totalPrice:function(){
+            totalPrice: function () {
                 let result = 0
-                for (let i = 0;i < this.books.length;i++) {
+                for (let i = 0; i < this.books.length; i++) {
                     result += this.books[i].price
                 }
                 return result
             }
         },
-        methods:{
-            addNum(){
+        methods: {
+            addNum() {
                 return parseFloat(this.num1) + parseFloat(this.num2);
             }
-        },
-        created(){
-                this.result = this.addNum();
         }
-      
-        
+
+    })
+
+    // computed计算属性中的set和get
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+            firstName: 'peicai',
+            lastName: 'wang'
+        },
+        computed: {
+            fullName: {
+                set: function () {
+                    //通常情况下set方法不赋值，避免属性被篡改，可删除不写
+                },
+                get: function () {
+                    //计算属性的赋值和取值是通过set和get方法实现，get返回什么值就赋值为什么
+                    //return '王培材'
+                    return this.firstName + this.lastName
+                }
+            }
+           // 等同于
+            // fullName:{
+            //     return this.firstName + this.lastName
+            // }
+        }
     })
 
 </script>
+
 </html>
