@@ -13,6 +13,7 @@
         <input type='text' v-model='num2' aria-label="输入"/>
         <span>计算属性得到的结果：{{ computedMessage }}</span>
         <span>方法得到的结果：{{ result }}</span>
+        <h2>总价格：{{totalPrice}}</h2>
     </div>
 </body>
 <script>
@@ -21,11 +22,23 @@
         data:{
             num1:'1',
             num2:'2',
-            result:''
+            result:'',
+            books:[
+                {id: 01,name: "java编程",price: 110},
+                {id: 02,name: "mysql语句",price: 98},
+                {id: 03,name: "spring框架",price: 115}
+            ]
         },
         computed:{
             computedMessage:function(){
                 return parseFloat(this.num1) + parseFloat(this.num2);
+            },
+            totalPrice:function(){
+                let result = 0
+                for (let i = 0;i < this.books.length;i++) {
+                    result += this.books[i].price
+                }
+                return result
             }
         },
         methods:{
