@@ -15,6 +15,13 @@
     <input id='button1' type='button' value='获取结果' @click="test(1,2)"/>
     <input id='button2' type='button' value='事件修饰符' @keyup.enter='sayHi()'/>
 </div>
+<div id='app3'>
+    <!-- 事件有参数时，如果加()不传参数，形参默认值为undefined,如果参数不加‘’，会被当成变量，
+        如果不加(),会传入事件默认对象event，如果有多个参数时还想获取event对象，使用$event传入 -->
+    <button @click='btnClick1'>按钮1，无参数</button>
+    <button v-on:click="btnClick2('abc')">按钮2，有一个普通参数</button>
+    <button @click="btnClick3('bbb',$event)">按钮3，有一个普通参数，一个事件参数</button>
+</div>
 <script>
     var vm = new Vue({
         el:'#app',
@@ -34,6 +41,21 @@
             },
             sayHi:function(){
                 alert("事件修饰符");
+            }
+        }
+    })
+
+    const vm3 = new Vue({
+        el:'#app3',
+        methods:{
+            btnClick1() {
+                alert("无参数")
+            },
+            btnClick2(arg1) {
+                alert("参数1="+arg1)
+            },
+            btnClick3(arg1,event) {
+                alert("参数1="+arg1+",参数2="+event)
             }
         }
     })

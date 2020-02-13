@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <span v-if='isUser'>
+      <label for='username'>用户账号</label>
+      <!-- key属性，为了标识input输入框的唯一，避免用户输入内容之后，点击切换之后，之前输入的内容还在当前输入框中 -->
+      <input type="text" id='username' placeholder="用户账号" key='username_input'>
+    </span>
+    <span v-else>
+      <label for='email'>用户邮箱</label>
+      <input type="text" id='email' placeholder="用户邮箱" key='email-input'>
+    </span>
+    <button @click="isUser = !isUser">切换类型</button>
+
+  </div>
+</body>
+<script>
+const app = new Vue({
+  el:'#app',
+  data:{
+    isUser: true
+  }
+})
+
+</script>
+</html>
