@@ -1,0 +1,25 @@
+	"vue-template": {
+    "prefix": "vue",
+    "body": [
+			"<!DOCTYPE html>",
+			"<html lang=\"en\">",
+			"<head>",
+				"  <meta charset=\"UTF-8\">",
+				"  <script src=\"https://cdn.staticfile.org/vue/2.2.2/vue.min.js\"></script>",
+				"  <title>$1</title>",
+			"</head>",
+			"<body>",
+				"  <div id='app'>",
+			  "",
+				"  </div>",
+			"</body>",
+			"<script>",
+				"  const app = new Vue({",
+					"    el:'#app',",
+					"    data:{}",
+				"  })",
+			"</script>",
+			"</html>"
+    ],
+    "description": "my vue template"
+  }
