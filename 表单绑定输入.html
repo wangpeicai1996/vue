@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <title>表单绑定输入</title>
+    <title>v-model表单绑定输入</title>
 </head>
 <body>
     <div id='app'>
@@ -53,6 +53,29 @@
         </select>
         <span>选择的选项：{{ selected }}</span>
     </div>
+
+    <div id='app7'>
+        <select  v-model='selected' multiple>
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>选择的选项：{{ selected }}</span>
+    </div>
+    <div id='app8'>
+        <label v-for='item in areas' :for='item'>
+            <input type="checkbox" :id='item' :value='item' v-model='area'>{{item}}
+        </label>
+        <br/>
+        <span>数组：{{area}}</span>
+    </div>
+    <div id='app9'>
+        v-model修饰符lazy延迟绑定v-model.lazy<br/>
+        <input type="text" v-model.lazy='message'>{{message}}
+        
+        
+    </div>
     <script>
         var vm = new Vue({
             el:'#app',
@@ -93,6 +116,30 @@
                     {text:'B',value:'2'},
                     {text:'C',value:'3'},
                 ]
+            }
+        })
+        var vm7 = new Vue({
+            el:'#app7',
+            data:{
+                selected:[],
+                options:[
+                    {text:'A',value:'1'},
+                    {text:'B',value:'2'},
+                    {text:'C',value:'3'},
+                ]
+            }
+        })
+        const vm8 = new Vue({
+            el:'#app8',
+            data:{
+                area:[],
+                areas:['北京','上海','广州','成都','重庆','杭州']
+            }
+        })
+        const vm9 = new Vue({
+            el: '#app9',
+            data: {
+                message:'你好'
             }
         })
         
