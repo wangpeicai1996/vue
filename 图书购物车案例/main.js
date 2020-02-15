@@ -61,6 +61,9 @@ const app = new Vue({
         totalPrice += this.books[i].price * this.books[i].count
       }
       return totalPrice
+      //es6循环语法
+      // for (let book of this.books) {
+      // }
     }
   },
   filters: {

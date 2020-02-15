@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title>高阶函数循环案例</title>
+</head>
+<body>
+  <div id='app'>
+    <ul>
+      <li v-for='num in arrays'>{{num}}</li>
+    </ul>
+    <button @click='chianCall'>触发</button>
+  </div>
+</body>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      arrays:[10,20,30,40,50]
+    },
+    methods:{
+      //利用filter函数，其中回调函数function会返回一个boolean值
+      //为true时，自动将此次回调函数的n放入一个新的数组中
+      //为false是，函数内部会自动过滤掉此次n
+      userFilter(){
+        let nums = this.arrays.filter(function(n){
+          return n < 30
+        })
+        console.log(nums);
+      },
+      //map函数，返回的是具体值，而filter函数返回的是boolean值
+      useMap(){
+        let num2 = this.arrays.map(function(n){
+            return n * 2
+        })
+        console.log(num2);
+      },
+      //reduce函数
+      userReduce(){
+        //参数一：回调函数，回调函数中的preValue是上一次函数返回的值，n
+        //参数二：0，是preValue的初始值
+        this.arrays.reduce(function(preValue,n){
+          return preValue + n
+        },0)
+      },
+      //链式编程，一句调用链搞定
+      chianCall(){
+        let num = this.arrays.filter(function(n){
+          return n < 30
+        }).map(function(n){
+          return n * 2
+        }).reduce(function(preValue,n){
+          return preValue + n
+        },0)
+        //lambda表达式书写
+        let num2 = this.arrays.filter(n => n <30).map(n => n * 2).reduce(((preValue,n) => preValue + n),0)
+        console.log(num)
+        console.log(num2)
+      }
+    }
+  })
+</script>
+</html>
