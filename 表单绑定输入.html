@@ -73,7 +73,12 @@
     <div id='app9'>
         v-model修饰符lazy延迟绑定v-model.lazy<br/>
         <input type="text" v-model.lazy='message'>{{message}}
-        
+        <br/>
+        v-model修饰符number,v-model绑定值，默认是String类型，v-model.number可指定为数字类型
+        <input type="number" v-model.number='age'>
+        <br/>
+        v-model修饰符trim,去除输入两边的空格
+        <input type="text" v-model.trim = 'name'>输出：{{name}}
         
     </div>
     <script>
@@ -139,7 +144,9 @@
         const vm9 = new Vue({
             el: '#app9',
             data: {
-                message:'你好'
+                message:'你好',
+                age: 18,
+                name: 'aaa'
             }
         })
         

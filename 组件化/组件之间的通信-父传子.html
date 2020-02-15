@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title></title>
+</head>
+<body>
+  <div id='app'>
+    <!--使用组件数，绑定父组件数据,传递数据到子组件-->
+    <cpn :cmovies='movies' :cmessage='message'></cpn>
+  </div>
+
+  <!--在子组件中使用数据-->
+  <template id='temp'>
+    <div>
+      <ul>
+        <li v-for='item in cmovies'>{{item}}</li>
+      </ul>
+      <h2>{{cmessage}}</h2>
+    </div>
+  </template>
+</body>
+<script>
+  const cpn = {
+    template: '#temp',
+    //定义子组件属性
+    //写法1：数组写法
+    //props:['cmovies','cmessage']
+    //写法2：对象写法，可以限制传递的数据类型
+    // props: {
+    //   cmovies: Array,
+    //多个可能类型
+    //   cmessage: [String,Number]
+    // }
+    //写法3：对属性进行更多的设置，默认值，必传控制
+    props: {
+      //类型是对象或者数组的时候，默认值必须是一个函数
+      cmovies: {
+        type: Array,
+        //default: [] 此写法2.5.x版本之后会报错
+        //默认值是一个函数
+        default(){
+          return []
+        }
+      },
+      //继续对象类型
+      cmessage: {
+        type: String,
+        default: '设置默认值',
+        required: true
+      }
+    }
+  }
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message: '你好',
+      movies:['钢铁侠','超人','蜘蛛侠','蝙蝠侠']
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+</html>

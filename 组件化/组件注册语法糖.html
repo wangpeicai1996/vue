@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title></title>
+</head>
+
+<body>
+  <div id='app'>
+    <cpn1></cpn1>
+  </div>
+</body>
+<script>
+  //const cpn1 = Vue.extend()
+  //1.创建组件构造的语法糖
+  //全局组件语法糖，直接注册
+  Vue.component('cpn1', {
+    template:
+      `
+      <div>
+          <h2>标题2</h2>
+          <p>内容，呵呵呵呵</p>
+      </div>
+    `
+  })
+
+  const app = new Vue({
+    el: '#app',
+    data: {},
+    //局部组件注册语法糖，直接注册
+    components: {
+      cpn2:
+      {
+        template:
+          `
+            <div>
+                <h2>标题2</h2>
+                <p>内容，呵呵呵呵</p>
+            </div>
+          `
+      }
+    }
+  })
+</script>
+
+</html>

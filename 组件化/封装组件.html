@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title></title>
+</head>
+<body>
+  <div id='app'>
+    <!--多个组件实例-->
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+
+ <template id='temp'>
+  <div>
+    <h2>计数器:{{counter}}</h2>
+    <button @click='add'>+</button>
+    <button @click='sub'>-</button>
+  </div>
+ </template> 
+</body>
+<script>
+Vue.component('cpn',{
+  template: '#temp',
+  //data之所以为函数，是因为在多个组件实例在调用的时候，
+  //函数会有自己对应的作用域，避免了数据共享造成问题，每次调用都是一个新的实例
+  data(){
+    return {
+      counter: 0
+    }
+  },
+  methods:{
+    add(){
+      this.counter++
+    },
+    sub(){
+      this.counter--
+    }
+  }
+})
+  const app = new Vue({
+    el:'#app',
+    data:{}
+  })
+</script>
+</html>
