@@ -7,9 +7,11 @@
 </head>
 <body>
   <!--父组件模板-->
-  <div id='app' @item-click='cpnClick'>
-    <cpn></cpn>
+  <!--父组件内监听子组件发送的事件-->
+  <div id='app'>
+    <cpn  @itemclick='cpnClick'></cpn>
   </div>
+
 <!--子组件模板-->
   <template id='cpn'>
     <div>
@@ -35,9 +37,8 @@
       methods:{
         btnClick(item){
           //console.log(item.name);
-          //发送事件到父组件
-          this.$emit('item-click')
-          
+          //发送自定义事件到父组件
+          this.$emit('itemclick',item)
         }
       }
     }
@@ -50,8 +51,8 @@
       cpn
     },
     methods:{
-      cpnClick(){
-        console.log("子组件事件点击")
+      cpnClick(item){
+        console.log("子组件事件点击,传递过来的值 " + item.name)
       }
     }
   })
