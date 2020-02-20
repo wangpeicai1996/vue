@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"/>
+  <title>Document</title>
+</head>
+<template id='emptyMessage'>
+  <div>
+    <h2>当前购物城为空</h2>
+  </div>
+</template>
+<body>
+  <div id='app'>
+    <div v-if='books.length > 0'>
+    <table id=‘table’>
+      <th>序号</th>
+      <th>书名</th>
+      <th>价格</th>
+      <th>数量</th>
+      <th>操作</th>
+      <tbody>
+        <tr v-for="(item,index) in books">
+          <td>{{index +1}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.price | showPrice}}</td>
+          <td>
+            <button @click='sub(index)' :disabled='item.count <= 1'>-</button>
+            {{item.count}}
+            <button @click='add(index)'>+</button>
+          </td>
+          <td><button @click='remove' >移除</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>总计：{{totalPrice | showPrice}}</h2>
+  </div>
+  <div v-else>
+     <!--全局组件使用-->
+    <empty></empty>
+  </div>
+</div>
+ 
+  
+  
+</body>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src='main.js'></script>
+</html>
