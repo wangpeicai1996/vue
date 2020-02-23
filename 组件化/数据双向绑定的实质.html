@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title>v-model的实质</title>
+</head>
+<body>
+  <div id='app'>
+    <!--v-model的实质其实是v-bind和v-click的结合，绑定值，然后调取默认的input事件将值传递，
+      默认input事件在调用的时候会将事件对象event传递，也就是传递了输入框对象，然后再获取输入框对象输入的值value-->
+    <!-- <input type="text" v-model=''> -->
+    <input type="text" :value='num1' @input='iptChange'>
+    <cpn :num2='num1'></cpn>
+  </div>
+
+
+  <template id='cpn'>
+    <div>
+      <h2>{{num2}}</h2>
+    </div>
+  </template>
+</body>
+<script>
+  const cpn = {
+    template: '#cpn',
+    props:{
+      num2:Number
+    }
+  }
+  const app = new Vue({
+    el:'#app',
+    data:{
+      num1: 222
+    },
+    methods:{
+      iptChange(event){
+        this.num1 = event.target.value
+      }
+    },
+    components:{
+      cpn
+    }
+  })
+</script>
+</html>

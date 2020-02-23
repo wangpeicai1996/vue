@@ -9,6 +9,8 @@
   <div id='app'>
     <!--使用组件数，绑定父组件数据,传递数据到子组件-->
     <cpn :cmovies='movies' :cmessage='message'></cpn>
+    <!--子组件的数据双向绑定-->
+    <num :subnum=number></num>
   </div>
 
   <!--在子组件中使用数据-->
@@ -18,6 +20,13 @@
         <li v-for='item in cmovies'>{{item}}</li>
       </ul>
       <h2>{{cmessage}}</h2>
+    </div>
+  </template>
+  <!--子组件的数据双向绑定-->
+  <template id='num'>
+    <div>
+     <h2>{{dnum}}</h2>
+     <input type="text" v-model='dnum'>
     </div>
   </template>
 </body>
@@ -52,14 +61,29 @@
       }
     }
   }
+
+//子组件的双向绑定的时候，使用data或者computed属性再加一层包裹，多一层参数的传递
+  const num = {
+    template:'#num',
+    props:{
+      subnum:Number,
+    },
+    data(){
+        return {
+          dnum:this.subnum
+        }
+      }
+  }
   const app = new Vue({
     el:'#app',
     data:{
       message: '你好',
-      movies:['钢铁侠','超人','蜘蛛侠','蝙蝠侠']
+      movies:['钢铁侠','超人','蜘蛛侠','蝙蝠侠'],
+      number:1
     },
     components: {
-      cpn
+      cpn,
+      num
     }
   })
 </script>
