@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title></title>
+</head>
+<body>
+  <div id='app'>
+    <cpn>
+      <button slot='left'>按钮</button>
+      <span slot='center'>标题</span>
+    </cpn>
+ </div>
+  <template id='cpn'>
+    <div>
+      <slot name='left'><span>左边</span></slot>
+      <slot name='center'><span>中间</span></slot>
+      <slot name='right'><span>右边</span></slot>
+    </div>
+  </template>
+</body>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{},
+    components:{
+      cpn:{
+        template:'#cpn'
+      }
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title></title>
+</head>
+<body>
+  <div id='app'>
+    <cpn><button>按钮1</button></cpn>
+    <cpn>插槽放置</cpn>
+    <cpn>
+      <p>ppppp</p>
+      <div>dddd</div>
+      <span>多个内容，一个插槽，会全部替换进去</span>
+    </cpn>
+    <cpn><button>按钮2</button></cpn>
+    <cpn></cpn>
+  </div>
+  
+  <!--保留共性，预留变化的地方-->
+  <template id='cpn'>
+    <div>
+      <h2>组件，哈哈哈</h2>
+      <!--预留插槽，可以放入任意东西-->
+      <slot><span>插槽的默认值显示</span></slot>
+    </div>
+  </template>
+</body>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{},
+    components:{
+      cpn:{
+        template:'#cpn'
+      }
+    }
+  })
+</script>
+</html>
