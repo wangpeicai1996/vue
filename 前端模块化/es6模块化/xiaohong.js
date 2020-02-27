@@ -14,3 +14,14 @@ console.log(name)
 console.log(age)
 console.log(sum(10,20))
 console.log(fun1)
+
+import addr from './xiaoming.js'
+
+console.log('export default导出的默认'+addr)
+
+//终极导入方式,将xiaomin.js中的内容全部导出给上别名
+import * as xiaoming from './xiaoming.js'
+
+//用别名调用
+console.log(xiaoming.flag)
+console.log(xiaoming.sum(1,2))
