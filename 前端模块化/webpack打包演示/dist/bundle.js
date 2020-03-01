@@ -440,28 +440,34 @@ function toComment(sourceMap) {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_test_js__ = __webpack_require__(3);
+
+
+var _test = __webpack_require__(3);
 
 //引入css等其他非js文件 
-__webpack_require__(4)
-__webpack_require__(8)
-var result = Object(__WEBPACK_IMPORTED_MODULE_0__js_test_js__["a" /* sum */])(1,2)
-console.log(result)
+__webpack_require__(4);
+__webpack_require__(8);
+var result = (0, _test.sum)(1, 2);
+console.log(result);
 
-document.writeln('<h2>webpack</h2>')
+document.writeln('<h2>webpack</h2>');
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = sum;
-function sum(num1, num2){
-  return num1 + num2
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sum = sum;
+function sum(num1, num2) {
+  return num1 + num2;
 }
 
 /***/ }),

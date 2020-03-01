@@ -53,6 +53,20 @@ module.exports = {
             
           }
         ]
+      },
+      //将文件中的es6语法转化成es5语法
+      /**安装babel-loader
+        * npm install --save-dev babel-loader@7 babel-core babel-preset-es2015
+        */
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }
       }
     ]
   }
@@ -64,3 +78,5 @@ module.exports = {
  * 在用webpack进行打包是，如果直接在终端运行此命令，会使用全局的webpack进行打包，但是如果在package.json中定义了命令映射的话，
  * 在终端运行映射的命令时，会优先使用本地webpack，或者得在运行./node_modules/.bin/webpack
  */
+
+ 
