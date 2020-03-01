@@ -13,7 +13,9 @@ module.exports = {
     //指定的导出路径必须是绝对路径
     //动态获取路径,__dirname获取当前文件路径，将dist拼接在后面
     path: path.resolve(__dirname,'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    //定义发布打包路径，任何资源的引用前都会拼接上此路径，避免找不到
+    publicPath:'dist/'
   },
   //使用loader将非js文件也当做模块打包
   //1.首先安装xxx-loader,npm install --save-dev css-loader
@@ -24,6 +26,33 @@ module.exports = {
       {
         test: /\.css$/,
         use:['style-loader','css-loader']
+      },
+      {
+        test: /\.less$/,
+        use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+        }, {
+            loader: "css-loader" // translates CSS into CommonJS
+        }, {
+            loader: "less-loader" // compiles Less to CSS
+        }]
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              //当图片小于限制大小的时候（通产默认值为8196 8kb），loader会将图片转换为base64格式字符串
+              //如果图片大于限制的话，就会使用file-loader加载器，只需要安装file-loader即可，不需要配置
+              limit: 20000,
+              //设置打包的文件的名字格式，放在img文件夹下，以文件原有名字+8位hash值+拓展名
+              //[]表示变量值
+              name: 'img/[name]-[hash:8].[ext]'
+            },
+            
+          }
+        ]
       }
     ]
   }
