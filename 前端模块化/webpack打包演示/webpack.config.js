@@ -4,7 +4,7 @@
 //会在当前目录下生成一个package.json文件，然后再执行npm install，会再生成package-lock.json
 //可以在package.json文件中的scripts标签下，绑定npm run xxx 命令的映射，如 "build" : "webpack"，只需要运行npm run build就相当于执行了webpack命令
 const path = require('path')
-
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
   //导出的入口
   entry: './src/main.js',
@@ -17,6 +17,10 @@ module.exports = {
     //定义发布打包路径，任何资源的引用前都会拼接上此路径，避免找不到
     publicPath:'dist/'
   },
+  plugins: [
+    // make sure to include the plugin for the magic
+    new VueLoaderPlugin()
+  ],
   //使用loader将非js文件也当做模块打包
   //1.首先安装xxx-loader,npm install --save-dev css-loader
   //2.webpack官网提供了很多loader,直接复制过来定义在module对象中即可
@@ -67,8 +71,22 @@ module.exports = {
             presets: ['es2015']
           }
         }
+      },
+      {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader'
+        }
       }
     ]
+   
+  },
+  resolve:{
+    //解决在引入的时候可以不写文件后缀名
+    extensions:['.js','.css','.vue'],
+    alias:{
+      'vue$':'vue/dist/vue.esm.js'
+    }
   }
 }
 
@@ -77,6 +95,13 @@ module.exports = {
  * 安装好之后，会在package.json文件中多出devDependencies标签，显示安装的webpack版本，
  * 在用webpack进行打包是，如果直接在终端运行此命令，会使用全局的webpack进行打包，但是如果在package.json中定义了命令映射的话，
  * 在终端运行映射的命令时，会优先使用本地webpack，或者得在运行./node_modules/.bin/webpack
+ */
+
+
+/**
+ * 在webpack中配置Vue
+ * npm安装vue
+ * npm install vue --save
  */
 
  
