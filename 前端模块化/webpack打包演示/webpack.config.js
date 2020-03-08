@@ -4,7 +4,10 @@
 //会在当前目录下生成一个package.json文件，然后再执行npm install，会再生成package-lock.json
 //可以在package.json文件中的scripts标签下，绑定npm run xxx 命令的映射，如 "build" : "webpack"，只需要运行npm run build就相当于执行了webpack命令
 const path = require('path')
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const webpack =require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
   //导出的入口
   entry: './src/main.js',
@@ -15,11 +18,18 @@ module.exports = {
     path: path.resolve(__dirname,'dist'),
     filename: 'bundle.js',
     //定义发布打包路径，任何资源的引用前都会拼接上此路径，避免找不到
-    publicPath:'dist/'
+    //publicPath:'dist/'
   },
   plugins: [
     // make sure to include the plugin for the magic
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.BannerPlugin('这是webpack的横幅插件'),
+    //可以jianghtml文件打包到dist文件夹中，可以指定生成的html文件的模板
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    }),
+    //此插件是将最终打包的js文件压缩，缩小打包文件的大小,开发阶段不用添加此插件，最终打包发布的时候用就行了
+    //new UglifyWebpackPlugin()
   ],
   //使用loader将非js文件也当做模块打包
   //1.首先安装xxx-loader,npm install --save-dev css-loader
@@ -87,6 +97,12 @@ module.exports = {
     alias:{
       'vue$':'vue/dist/vue.esm.js'
     }
+  },
+  //搭建本地开发服务，npm install webpack-dev-server --save-dev
+  devServer:{
+    contentBase: './dist',
+    //是否实时刷新内容
+    inline: true
   }
 }
 
@@ -99,7 +115,7 @@ module.exports = {
 
 
 /**
- * 在webpack中配置Vue
+ * 在webpack中配置Vue，将vue模块化导入使用
  * npm安装vue
  * npm install vue --save
  */

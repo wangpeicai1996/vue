@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <title></title>
+</head>
+<body>
+  <div id='app'>
+  </div>
+ 
+<script type="text/javascript" src="bundle.js"></script></body>
+<!--webpack ./src/main.js ./dist/bundle.js 
+  使用webpack打包，指定main.js文件时，会自动将main.js中引用到的其他文件也打在包中-->
+  <!--webpack4.0.x以后的版本打包命令：webpack ./src/main.js  -o ./dist/bundle.js-->
+<!--使用webpack打包之后，只需要引用打包后的文件即可-->
+<script src='./dist/bundle.js'>
+</script>
+</html>
