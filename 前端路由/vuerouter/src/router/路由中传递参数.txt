@@ -1,0 +1,7 @@
+1.params
+  a.配置的路由格式 '/user/:userid'
+  b.在传递路径后面传递参数  '/user/zhansan' （:to="'/user/'+userid" 动态绑定传递值）
+  c.传递后的路径 /user/zhangsan
+  d.在页面中获取参数值  $route.params.userid
+2.query
+  a.配置路由格式 '/user'
