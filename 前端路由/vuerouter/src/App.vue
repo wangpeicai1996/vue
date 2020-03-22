@@ -11,12 +11,17 @@
     <router-link :to="'/user/' + userid" tag='button' replace>用户</router-link>
     <!-- <router-link to="/profile" tag='button'>档案</router-link> -->
     <!--query方式向后传递参数，绑定对象{},传递query对象，url会通过?传值?name=lisi&age=18-->
-    <router-link :to="{path:'/profile',query:{name:'lisi',age:18}}" tag='button'>档案</router-link>
+    <!-- <router-link :to="{path:'/profile',query:{name:'lisi',age:18}}" tag='button'>档案</router-link> -->
 
+<!--通过在事件方法中，用代码跳转页面，传递参数-->
   <!-- <button @click="homeClick">首页</button>
   <button @click="aboutClick">关于</button>
   <button @click="userClick">用户</button> -->
-    <router-view></router-view>
+  <button @click='profileClick'>档案</button>
+
+  <keep-alive>
+    <router-view/>
+    </keep-alive>
   </div>
 </template>
 <script>
@@ -39,6 +44,16 @@ export default {
     },
     userClick(){
       this.$router.push('/user')
+    },
+    profileClick(){
+      this.$router.push({
+        path:'/profile',
+        query:{
+          name: 'ccc',
+          age: 20,
+          height: 199
+        }
+      })
     }
   }
 }

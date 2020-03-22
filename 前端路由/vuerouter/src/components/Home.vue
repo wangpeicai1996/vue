@@ -19,6 +19,9 @@
 
       };
     },
+    destroyed() {
+
+    },
 
     components: {},
 
