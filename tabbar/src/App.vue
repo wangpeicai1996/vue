@@ -1,22 +1,22 @@
 <template>
   <div id="app">
     <tab-bar>
-      <tab-bar-item path='/home'>
+      <tab-bar-item path='/home' activeColor='red'>
          <img slot='item-icon' src='./assets/img/tabbar/首页.png'/>
          <img slot='item-icon-active' src='./assets/img/tabbar/首页_活跃.png'/>
         <div slot='item-text'>首页</div>
       </tab-bar-item>
-      <tab-bar-item path='/category'>
+      <tab-bar-item path='/category' activeColor='red'>
         <img slot='item-icon' src='./assets/img/tabbar/分类.png'/>
         <img slot='item-icon-active' src='./assets/img/tabbar/分类_活跃.png'/>
         <div slot='item-text'>分类</div>
       </tab-bar-item>
-      <tab-bar-item path='/cart'>
+      <tab-bar-item path='/cart' activeColor='red'>
         <img slot='item-icon' src='./assets/img/tabbar/购物车.png'/>
         <img slot='item-icon-active' src='./assets/img/tabbar/购物车_活跃.png'/>
         <div slot='item-text'>购物车</div>
       </tab-bar-item>
-      <tab-bar-item path='/profile'>
+      <tab-bar-item path='/profile' activeColor='red'>
              <img slot='item-icon' src='./assets/img/tabbar/我的.png'/>
              <img slot='item-icon-active' src='./assets/img/tabbar/我的_活跃.png'/>
         <div slot='item-text'>我的</div>
