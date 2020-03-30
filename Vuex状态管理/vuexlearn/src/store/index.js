@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {INCREMENT,DECREMENT} from './mutations-types'
 
 Vue.use(Vuex)
 
@@ -11,20 +12,38 @@ Vue.use(Vuex)
       {name: "张三", age: 19},
       {name: "李四", age: 20},
       {name: "王五", age: 25}
-    ]
+    ],
+    info:{
+      address:"北京",
+      county:"china",
+      num:"010"
+    }
   },
   //store中的变量状态修改唯一途径就是通过$sotre.commit('xxx')提交到mutations
   mutations: {
     //默认参数会传入state
-    increment(state){
+    [INCREMENT](state){
       state.count++
     },
-    decrement(state){
+    //定义常量命名，避免出错
+    [DECREMENT](state){
       state.count--
     },
     //接收其他参数
     addCount(state,num){
       state.count += num
+    },
+    addCountObj(state,obj){
+      state.count += obj.num
+      console.log(obj.age);
+    },
+    updateInfo(state,value){
+      //如果属性未在state中定义并初始化，则无法对此属性做到响应式改变，但是可以使用Vue.set()做到响应式改变
+      //向对象中增加属性
+      Vue.set(state.info,"people",value)
+      //普通方式删除对象中的属性也做不到响应式
+      //delete state.info.num
+      Vue.delete(state.info,"num")
     }
   },
   actions: {
