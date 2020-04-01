@@ -17,7 +17,14 @@
     <!--state中的对象实现响应式-->
     <h2>{{$store.state.info}}</h2>
     <button @click="updateInfo('111')">修改信息</button>
-
+    <button @click="aupdateInfo('重庆')">异步修改</button>
+    <!--modules中的state-->
+    <h2>modules中的属性</h2>
+    <h2>{{$store.state.modulesA.name}}</h2>
+    <h2>{{$store.getters.fullName}}</h2>
+    <h2>{{$store.getters.fullName2}}</h2>
+    <button @click="updateNameAsyn()">模块中的异步方法</button>
+    <button @click="updateName('lisi')">通过modules中的mutations修改</button>
   </div>
 </template>
 
@@ -54,6 +61,20 @@ export default {
     },
     updateInfo(value){
         this.$store.commit("updateInfo",value)
+    },
+    //提交到actions中的方法
+    aupdateInfo(city){
+      //异步调用，并执行回调函数，获得返回值res
+      this.$store.dispatch('aupdateInfo',city)
+      .then(res =>{
+        console.log("回调函数返回的信息"+res);
+      })
+    },
+    updateName(name){
+      this.$store.commit('updateName',name)
+    },
+    updateNameAsyn(){
+      this.$store.dispatch('updateNameAsyn')
     }
   },
   components:{
