@@ -1,0 +1,19 @@
+1.目录结构划分
+
+  assets--资源
+    -img--图片
+    -css--样式
+  component--组件(放置公共组件)
+    --common(公共组件，其他项目也可以用到的)
+    --content(放置和当前项目业务相关的公共组件)
+  views--视图(大的视图)
+  router--路由
+  store--状态管理
+  network--网络请求
+  common--项目公共js文件
+
+  2.引用css文件
+  normalize.css----初始化页面风格
+
+  3.根路径下创建vue.config.js文件，修改一些配置，创建文件路径别名
+  配置省略文件后缀名
